@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-interface GearControlsProps {
+type GearControlsProps = {
   gearProps: {
     color: string;
     size: number;
@@ -15,10 +15,10 @@ interface GearControlsProps {
     rotationSpeed: number;
     clockwise: boolean;
   };
-  updateGearProps: (props: Partial<typeof gearProps>) => void;
-}
+  updateGearProps: (newProps: Partial<GearControlsProps["gearProps"]>) => void;
+};
 
-const predefinedColors = [
+const predefinedColors : string[] = [
   "#F97316", // Orange
   "#2563EB", // Blue
   "#10B981", // Green
@@ -29,7 +29,7 @@ const predefinedColors = [
   "#F43F5E", // Red
 ];
 
-export default function GearControls({ gearProps, updateGearProps }: GearControlsProps) {
+const GearControls: React.FC<GearControlsProps> = ({ gearProps, updateGearProps }) => {
   const handleTeethChange = (value: number[]) => {
     updateGearProps({ teethCount: value[0] });
   };
@@ -69,7 +69,7 @@ export default function GearControls({ gearProps, updateGearProps }: GearControl
           </div>
           
           <div className="flex flex-wrap gap-2">
-            {predefinedColors.map((color) => (
+            {predefinedColors.map((color: string) => (
               <button
                 key={color}
                 onClick={() => handleColorChange(color)}
@@ -147,4 +147,6 @@ export default function GearControls({ gearProps, updateGearProps }: GearControl
       </div>
     </div>
   );
-}
+};
+
+export default GearControls;

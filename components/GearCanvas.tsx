@@ -17,6 +17,17 @@ export default function GearCanvas() {
     setGearProps((prev) => ({ ...prev, ...newProps }));
   };
 
+  type GearControlsProps = {
+    gearProps: {
+      color: string;
+      size: number;
+      teethCount: number;
+      rotationSpeed: number;
+      clockwise: boolean;
+    };
+    updateGearProps: (newProps: Partial<GearControlsProps["gearProps"]>) => void;
+  };
+
   return (
     <div className="w-full max-w-5xl">
       <div className="flex flex-col lg:flex-row gap-8 items-center">
